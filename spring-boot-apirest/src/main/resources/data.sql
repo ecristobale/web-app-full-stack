@@ -1,4 +1,4 @@
-INSERT INTO CLIENTE (NOMBRE, APELLIDO, EMAIL) 
+INSERT INTO clientes (nombre, apellido, email) 
 VALUES 
 ('Eduardo', 'Cristóbal', 'unemail@gmail.com'),
 ('Jonh', 'Doe', 'johndoe@gmail.com'),
