@@ -24,13 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.slim.min.js",
-              "./node_modules/popper.js/dist/umd/popper.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -55,6 +54,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }

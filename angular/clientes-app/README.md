@@ -1,6 +1,6 @@
 # ClientesApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
 
 ## Development server
 
