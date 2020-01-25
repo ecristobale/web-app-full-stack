@@ -44,7 +44,7 @@ public class ClienteRestController {
 	
 	@PutMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {
+	public Cliente update(@PathVariable Long id, @RequestBody Cliente cliente) {
 		Cliente clienteActual = clienteService.findById(id);
 		
 		clienteActual.setNombre(cliente.getNombre());

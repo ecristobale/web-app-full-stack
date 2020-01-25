@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "17554690-fa28-457d-91fe-b4df045948a3",
+		"_postman_id": "e8c15e6c-3a86-4eac-a632-12f264bed88d",
 		"name": "RestApiSpringBoot",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,14 +11,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/clientes",
-					"protocol": "http",
+					"raw": "{{urlHost}}{{restApiService}}/clientes",
 					"host": [
-						"localhost"
+						"{{urlHost}}{{restApiService}}"
 					],
-					"port": "8081",
 					"path": [
-						"api",
 						"clientes"
 					]
 				}
@@ -31,14 +28,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/api/clientes/3",
-					"protocol": "http",
+					"raw": "{{urlHost}}{{restApiService}}/clientes/3",
 					"host": [
-						"localhost"
+						"{{urlHost}}{{restApiService}}"
 					],
-					"port": "8081",
 					"path": [
-						"api",
 						"clientes",
 						"3"
 					]
@@ -68,14 +62,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/clientes",
-					"protocol": "http",
+					"raw": "{{urlHost}}{{restApiService}}/clientes",
 					"host": [
-						"localhost"
+						"{{urlHost}}{{restApiService}}"
 					],
-					"port": "8081",
 					"path": [
-						"api",
 						"clientes"
 					]
 				}
@@ -104,14 +95,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8081/api/clientes/2",
-					"protocol": "http",
+					"raw": "{{urlHost}}{{restApiService}}/clientes/2",
 					"host": [
-						"localhost"
+						"{{urlHost}}{{restApiService}}"
 					],
-					"port": "8081",
 					"path": [
-						"api",
 						"clientes",
 						"2"
 					]
@@ -132,14 +120,11 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8081/api/clientes/5",
-					"protocol": "http",
+					"raw": "{{urlHost}}{{restApiService}}/clientes/5",
 					"host": [
-						"localhost"
+						"{{urlHost}}{{restApiService}}"
 					],
-					"port": "8081",
 					"path": [
-						"api",
 						"clientes",
 						"5"
 					]
