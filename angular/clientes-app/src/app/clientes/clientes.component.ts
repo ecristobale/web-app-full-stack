@@ -4,8 +4,7 @@ import { ClienteService } from './cliente.service';
 
 @Component({
   selector: 'app-clientes',
-  templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  templateUrl: './clientes.component.html'
 })
 export class ClientesComponent implements OnInit {
 
