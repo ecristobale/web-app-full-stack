@@ -171,7 +171,109 @@
 				],
 				"body": {
 					"mode": "raw",
+					"raw": "\t{\r\n        \"nombre\": \"Client\",\r\n        \"apellido\": \"Updated\",\r\n        \"email\": \"updated@gmail.com\",\r\n        \"createdAt\": \"2019-12-16T15:50:12.646+0000\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/2",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/api/clientes/{id} EMAIL duplicado",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n        \"nombre\": \"Client\",\r\n        \"apellido\": \"Updated\",\r\n        \"email\": \"unemail@gmail.com\",\r\n        \"createdAt\": \"2019-12-16T15:50:12.646+0000\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/3",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
 					"raw": "\t{\r\n        \"nombre\": \"Client\",\r\n        \"apellido\": \"Updated\",\r\n        \"email\": \"updated@gmail.com\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/46",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"46"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/api/clientes/{id} nombre NULL",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n        \"apellido\": \"Updated\",\r\n        \"email\": \"updated@gmail.com\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
