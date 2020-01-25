@@ -41,6 +41,24 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/clientes/{idNotFound}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/30",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes",
 			"request": {
 				"method": "POST",
