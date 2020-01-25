@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clientes',
@@ -16,6 +17,28 @@ export class ClientesComponent implements OnInit {
     this.clienteService.getClientes().subscribe(
       clientes => this.clientes = clientes
     );
+  }
+
+  delete(cliente: Cliente): void {
+    swal.fire({
+      title: 'Estás seguro?',
+      text: `El cliente ${cliente.nombre} ${cliente.apellido} se eliminará definitivamente`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.clienteService.delete(cliente.id).subscribe(
+          response => {
+            this.clientes = this.clientes.filter(cli => cli !== cliente);
+            swal.fire('Cliente eliminado', `Cliente ${cliente.nombre} eliminado con éxito`, 'success');
+          }
+        );
+      }
+    })
   }
 
 }
