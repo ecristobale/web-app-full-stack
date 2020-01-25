@@ -41,7 +41,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8081/api/clientes/{idNotFound}",
+			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -313,6 +313,31 @@
 					"path": [
 						"clientes",
 						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/57",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"57"
 					]
 				}
 			},
