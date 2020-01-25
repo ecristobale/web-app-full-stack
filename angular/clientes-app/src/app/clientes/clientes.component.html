@@ -7,7 +7,7 @@
             <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">Crear Cliente</button>
         </div>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
             <thead>
                 <tr>
                     <th>id</th>
@@ -35,5 +35,8 @@
                 </tr>
             </tbody>
         </table>
+        <div class="alert alert-info" *ngIf="clientes?.length==0">
+            No hay registros en la base de datos.
+        </div>
     </div>
   </div>
