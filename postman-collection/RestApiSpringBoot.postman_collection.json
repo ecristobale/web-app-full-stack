@@ -23,6 +23,25 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/clientes/page/{page} FIRST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/page/0",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"page",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/{id}",
 			"request": {
 				"method": "GET",
