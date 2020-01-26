@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { CLIENTES } from './clientes.json';
 import { Cliente } from './cliente.js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,8 @@ export class ClienteService {
   urlEndPoint = 'http://localhost:8081/api/clientes';
   private httpHeaders = new HttpHeaders({'Content-type' : 'application/json'});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   getClientes(): Observable<Cliente[]> {
     /* CLIENTES converted as stream by using of
@@ -25,7 +29,14 @@ export class ClienteService {
   }
 
   getCliente(id: number): Observable<Cliente> {
-    return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`);
+    return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
+      catchError(e => {
+        this.router.navigate(['./clientes']);
+        console.error(e.error.mensaje);
+        swal.fire('Error al editar', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   update(cliente: Cliente): Observable<Cliente> {
