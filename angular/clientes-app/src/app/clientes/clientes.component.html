@@ -35,6 +35,7 @@
                 </tr>
             </tbody>
         </table>
+        <paginator-nav *ngIf="paginator" [paginator] = "paginator"></paginator-nav>
         <div class="alert alert-info" *ngIf="clientes?.length==0">
             No hay registros en la base de datos.
         </div>
