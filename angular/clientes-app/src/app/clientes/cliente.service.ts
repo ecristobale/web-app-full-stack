@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { formatDate, DatePipe } from '@angular/common';
 
 import { CLIENTES } from './clientes.json';
@@ -23,6 +23,13 @@ export class ClienteService {
     /* CLIENTES converted as stream by using of
     return of(CLIENTES); */
     return this.http.get(this.urlEndPoint).pipe(
+      tap(response => {
+        console.log('tap 1');
+        let clientes = response as Cliente[];
+        clientes.forEach(cliente => {
+          console.log(cliente.nombre);
+        })
+      }),
       map(response => {
         let clientes = response as Cliente[];
 
@@ -33,6 +40,12 @@ export class ClienteService {
           //cliente.createdAt = formatDate(cliente.createdAt, 'dd-MM-yyyy', 'en_US');
           return cliente;
         });
+      }),
+      tap(response => {
+        console.log('tap 2');
+        response.forEach(cliente => {
+          console.log(cliente.nombre);
+        })
       })
     );
   }
