@@ -8,4 +8,10 @@ INSERT INTO clientes (nombre, apellido, email)
 VALUES 
 ('Alex', 'Harrys', 'aharrys@gmail.com'),
 ('Tristana', 'Lol', 'adctrist@gmail.com'),
-('Matt', 'John', 'mj@gmail.com');
+('Matt', 'John', 'mj@gmail.com'),
+('Harry', 'Patt', 'patt@gmail.com'),
+('Mark', 'Lenders', 'mlenders@gmail.com'),
+('Tom', 'Jerry', 'jerryt@gmail.com'),
+('Jony', 'Skinner', 'jskinner@gmail.com'),
+('Paul', 'Golden', 'pgold@gmail.com'),
+('Junior', 'Bann', 'jbann@gmail.com');
