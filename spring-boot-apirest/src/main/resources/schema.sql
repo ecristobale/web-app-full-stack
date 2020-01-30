@@ -5,5 +5,5 @@ CREATE TABLE clientes(
    nombre VARCHAR (250) NOT NULL,
    apellido VARCHAR (250) NOT NULL,
    email VARCHAR (250) NOT NULL UNIQUE,
-   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   created_at TIMESTAMP NOT NULL
 );
