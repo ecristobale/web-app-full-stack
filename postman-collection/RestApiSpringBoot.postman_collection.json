@@ -23,6 +23,39 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/clientes/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/profile.png"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/upload",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/page/{page} FIRST",
 			"request": {
 				"method": "GET",
