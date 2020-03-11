@@ -23,6 +23,25 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/uploads/img/90e18c50-33b2-4261-8fbb-942108b28b6c_profile.png",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/uploads/img/90e18c50-33b2-4261-8fbb-942108b28b6c_profile.png",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"uploads",
+						"img",
+						"90e18c50-33b2-4261-8fbb-942108b28b6c_profile.png"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/upload",
 			"request": {
 				"method": "POST",
