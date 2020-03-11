@@ -2,6 +2,7 @@ package com.ecristobale.spring.boot.apirest.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,9 +15,12 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -183,6 +187,23 @@ public class ClienteRestController {
 		}
 		
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/uploads/img/{filename:.+}")
+	public ResponseEntity<Resource> showPhoto(@PathVariable String filename) {
+		Path filePath = Paths.get("uploads").resolve(filename).toAbsolutePath();
+		Resource resource = null;
+		try {
+			resource = new UrlResource(filePath.toUri());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		if(!resource.exists() && !resource.isReadable()) {
+			throw new RuntimeException("Error al cargar la imagen: " + filename);
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
+		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
 
 	private void deletePreviousPhoto(Cliente cliente) {
