@@ -1,5 +1,6 @@
 package com.ecristobale.spring.boot.apirest.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -144,6 +145,8 @@ public class ClienteRestController {
 		Map<String, Object> response = new HashMap<>();
 		
 		try{
+			Cliente cliente = clienteService.findById(id);
+			deletePreviousPhoto(cliente);
 			clienteService.delete(id);
 		} catch(DataAccessException dae) {
 			response.put("mensaje", "Error al eliminar en la base de datos.");
@@ -169,6 +172,9 @@ public class ClienteRestController {
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
+			
+			deletePreviousPhoto(cliente);
+			
 			cliente.setPhoto(filename);
 			clienteService.save(cliente);
 			
@@ -177,5 +183,14 @@ public class ClienteRestController {
 		}
 		
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
+
+	private void deletePreviousPhoto(Cliente cliente) {
+		String oldFilename = cliente.getPhoto();
+		if(oldFilename != null && oldFilename.length() > 0) {
+			Path oldFilePath = Paths.get("uploads").resolve(oldFilename).toAbsolutePath();
+			File oldPhotoFile = oldFilePath.toFile();
+			if(oldPhotoFile.exists() && oldPhotoFile.canRead()) oldPhotoFile.delete();
+		}
 	}
 }
