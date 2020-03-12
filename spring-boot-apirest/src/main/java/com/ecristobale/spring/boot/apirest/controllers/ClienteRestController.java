@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -46,6 +48,8 @@ public class ClienteRestController {
 
 	@Autowired
 	IClienteService clienteService;
+	
+	private final Logger log = LoggerFactory.getLogger(ClienteRestController.class);
 	
 	@GetMapping("/clientes")
 	public List<Cliente> index() {
@@ -169,6 +173,7 @@ public class ClienteRestController {
 			String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename().replace(" ", "");
 			// filePath: is relative path, for absolute: C://Temp//uploads .. \\opt\\uploads
 			Path filePath = Paths.get("uploads").resolve(filename).toAbsolutePath();
+			log.info(filePath.toString());
 			try {
 				Files.copy(file.getInputStream(), filePath);
 			} catch (IOException e) {
@@ -192,6 +197,7 @@ public class ClienteRestController {
 	@GetMapping("/uploads/img/{filename:.+}")
 	public ResponseEntity<Resource> showPhoto(@PathVariable String filename) {
 		Path filePath = Paths.get("uploads").resolve(filename).toAbsolutePath();
+		log.info(filePath.toString());
 		Resource resource = null;
 		try {
 			resource = new UrlResource(filePath.toUri());
