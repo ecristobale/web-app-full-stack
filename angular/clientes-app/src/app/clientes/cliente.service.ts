@@ -32,9 +32,9 @@ export class ClienteService {
       map( (response: any) => {
         (response.content as Cliente[]).map(cliente => {
           cliente.nombre = cliente.nombre.toUpperCase();
-          //let datePipe = new DatePipe('es');
-          //cliente.createdAt = datePipe.transform(cliente.createdAt, 'EEEE dd, MMMM yyyy');
-          //cliente.createdAt = formatDate(cliente.createdAt, 'dd-MM-yyyy', 'en_US');
+          // let datePipe = new DatePipe('es');
+          // cliente.createdAt = datePipe.transform(cliente.createdAt, 'EEEE dd, MMMM yyyy');
+          // cliente.createdAt = formatDate(cliente.createdAt, 'dd-MM-yyyy', 'en_US');
           return cliente;
         });
         return response;
@@ -102,7 +102,7 @@ export class ClienteService {
     let formData = new FormData();
     formData.append('file', photo);
     formData.append('id', id);
-    return this.http.post<Cliente>(`${this.urlEndPoint}/upload/`, formData).pipe(
+    return this.http.post<Cliente>(`${this.urlEndPoint}/upload`, formData).pipe(
       map( ( response: any) => response.cliente as Cliente),
       catchError(e => {
         console.error(e.error.mensaje);

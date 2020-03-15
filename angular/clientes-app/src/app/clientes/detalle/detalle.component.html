@@ -1,13 +1,28 @@
 <div class="card bg-dark text-white">
     <div class="card-header">{{ titulo }}</div>
     <div class="card-body">
-        <div class="input-group">
-            <div class="custom-file">
-              <input (change)="selectPhoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-              <label class="custom-file-label" for="inputGroupFile04">Subir foto</label>
-            </div>
-            <div class="input-group-append">
-              <button (click)="uploadPhoto()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <ul *ngIf="cliente" class="list-group text-dark mb-3">
+                  <li class="list-group-item active">{{cliente.nombre}}</li>
+                  <li class="list-group-item">{{cliente.apellido}}</li>
+                  <li class="list-group-item">{{cliente.email}}</li>
+                  <li class="list-group-item">{{cliente.createdAt | date:"fullDate"}}</li>
+                </ul>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input (change)="selectPhoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button (click)="uploadPhoto()" [disabled]="!selectedPhoto" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+                  </div>
+              </div>
+              </div>
+              <div class="col-sm">
+                <img *ngIf="cliente?.photo" src="http://localhost:8081/api/uploads/img/{{cliente.photo}}" alt="{{cliente.photo}}" class="img-thumbnail rounded">
+              </div>
             </div>
         </div>
     </div>

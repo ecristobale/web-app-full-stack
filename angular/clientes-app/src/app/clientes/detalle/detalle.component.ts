@@ -30,15 +30,23 @@ export class DetalleComponent implements OnInit {
   selectPhoto(event: any) {
     this.selectedPhoto = event.target.files[0];
     console.log(this.selectedPhoto);
+    if (this.selectedPhoto.type.indexOf('image') < 0) {
+      swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
+      this.selectedPhoto = null;
+    }
   }
 
   uploadPhoto() {
-    this.clienteService.uploadPhoto(this.selectedPhoto, this.cliente.id).subscribe(
-      cliente => {
-        this.cliente = cliente;
-        swal.fire('La foto se ha subido correctamente', `La foto se ha subido con éxito: ${this.cliente.photo}`, 'success');
-      }
-    );
+    if (!this.selectedPhoto) {
+      swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
+    } else {
+      this.clienteService.uploadPhoto(this.selectedPhoto, this.cliente.id).subscribe(
+        cliente => {
+          this.cliente = cliente;
+          swal.fire('La foto se ha subido correctamente', `La foto se ha subido con éxito: ${this.cliente.photo}`, 'success');
+        }
+      );
+    }
   }
 
 }
