@@ -9,8 +9,7 @@ const routes: Routes = [
     { path: 'clientes', component: ClientesComponent },
     { path: 'clientes/page/:page', component: ClientesComponent },
     { path: 'clientes/form', component: FormComponent },
-    { path: 'clientes/form/:id', component: FormComponent },
-    { path: 'clientes/detalle/:id', component: DetalleComponent }
+    { path: 'clientes/form/:id', component: FormComponent }
   ];
 
 @NgModule({

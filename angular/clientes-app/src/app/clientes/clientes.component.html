@@ -1,3 +1,4 @@
+<detalle-cliente *ngIf="selectedClient" [cliente] = "selectedClient"></detalle-cliente>
 <div class="card border-primary mb-3">
     <div class="card-header">Clientes</div>
     <div class="card-body text-primary">
@@ -21,7 +22,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes">
-                    <td><button type="button" [routerLink]="['/clientes/detalle', cliente.id]" class="btn btn-success btn-sm">{{ cliente.id }}</button></td>
+                    <td><button type="button" (click)="openModal(cliente)" class="btn btn-success btn-sm">{{ cliente.id }}</button></td>
                     <td>{{ cliente.nombre }}</td>
                     <td>{{ cliente.apellido | uppercase }}</td>
                     <td>{{ cliente.email }}</td>
