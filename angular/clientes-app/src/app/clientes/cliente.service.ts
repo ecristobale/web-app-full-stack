@@ -5,7 +5,7 @@ import { formatDate, DatePipe } from '@angular/common';
 
 import { CLIENTES } from './clientes.json';
 import { Cliente } from './cliente.js';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -98,17 +98,15 @@ export class ClienteService {
     );
   }
 
-  uploadPhoto(photo: File, id): Observable<Cliente> {
+  uploadPhoto(photo: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append('file', photo);
     formData.append('id', id);
-    return this.http.post<Cliente>(`${this.urlEndPoint}/upload`, formData).pipe(
-      map( ( response: any) => response.cliente as Cliente),
-      catchError(e => {
-        console.error(e.error.mensaje);
-        swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
-      })
-    );
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
+      reportProgress: true
+    });
+
+    return this.http.request(req);
   }
 }

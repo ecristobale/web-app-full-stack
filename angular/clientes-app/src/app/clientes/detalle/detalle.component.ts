@@ -3,6 +3,7 @@ import { Cliente } from '../cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'detalle-cliente',
@@ -13,6 +14,7 @@ export class DetalleComponent implements OnInit {
   cliente: Cliente;
   titulo = 'Detalle del cliente';
   private selectedPhoto: File;
+  progress = 0;
 
   constructor(private clienteService: ClienteService, private activatedRoute: ActivatedRoute) { }
 
@@ -29,6 +31,7 @@ export class DetalleComponent implements OnInit {
 
   selectPhoto(event: any) {
     this.selectedPhoto = event.target.files[0];
+    this.progress = 0;
     console.log(this.selectedPhoto);
     if (this.selectedPhoto.type.indexOf('image') < 0) {
       swal.fire('Error seleccionar imagen: ', 'El archivo debe ser del tipo imagen', 'error');
@@ -41,9 +44,14 @@ export class DetalleComponent implements OnInit {
       swal.fire('Error Upload: ', 'Debe seleccionar una foto', 'error');
     } else {
       this.clienteService.uploadPhoto(this.selectedPhoto, this.cliente.id).subscribe(
-        cliente => {
-          this.cliente = cliente;
-          swal.fire('La foto se ha subido correctamente', `La foto se ha subido con éxito: ${this.cliente.photo}`, 'success');
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progress = Math.round((event.loaded / event.total) * 100);
+          } else if (event.type === HttpEventType.Response) {
+            let response: any = event.body;
+            this.cliente = response.cliente as Cliente;
+            swal.fire('La foto se ha subido correctamente', response.mensaje, 'success');
+          }
         }
       );
     }
