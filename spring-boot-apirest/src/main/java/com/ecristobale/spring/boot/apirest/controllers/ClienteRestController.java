@@ -1,24 +1,16 @@
 package com.ecristobale.spring.boot.apirest.controllers;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ecristobale.spring.boot.apirest.models.entity.Cliente;
 import com.ecristobale.spring.boot.apirest.models.services.IClienteService;
+import com.ecristobale.spring.boot.apirest.models.services.IUploadFileService;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -49,7 +42,8 @@ public class ClienteRestController {
 	@Autowired
 	IClienteService clienteService;
 	
-	private final Logger log = LoggerFactory.getLogger(ClienteRestController.class);
+	@Autowired
+	IUploadFileService uploadFileService;
 	
 	@GetMapping("/clientes")
 	public List<Cliente> index() {
@@ -154,7 +148,7 @@ public class ClienteRestController {
 		
 		try{
 			Cliente cliente = clienteService.findById(id);
-			deletePreviousPhoto(cliente);
+			uploadFileService.deleteFile(cliente.getPhoto());
 			clienteService.delete(id);
 		} catch(DataAccessException dae) {
 			response.put("mensaje", "Error al eliminar en la base de datos.");
@@ -170,19 +164,16 @@ public class ClienteRestController {
 		Map<String, Object> response = new HashMap<>();
 		Cliente cliente = clienteService.findById(id);
 		if(!file.isEmpty()) {
-			String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename().replace(" ", "");
-			// filePath: is relative path, for absolute: C://Temp//uploads .. \\opt\\uploads
-			Path filePath = Paths.get("uploads").resolve(filename).toAbsolutePath();
-			log.info(filePath.toString());
+			String filename = null;
 			try {
-				Files.copy(file.getInputStream(), filePath);
+				filename = uploadFileService.uploadFile(file);
 			} catch (IOException e) {
-				response.put("mensaje", "Error al subir la imagen: " + filename);
+				response.put("mensaje", "Error al subir la imagen");
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			
-			deletePreviousPhoto(cliente);
+
+			uploadFileService.deleteFile(cliente.getPhoto());
 			
 			cliente.setPhoto(filename);
 			clienteService.save(cliente);
@@ -196,34 +187,14 @@ public class ClienteRestController {
 	
 	@GetMapping("/uploads/img/{filename:.+}")
 	public ResponseEntity<Resource> showPhoto(@PathVariable String filename) {
-		Path filePath = Paths.get("uploads").resolve(filename).toAbsolutePath();
-		log.info(filePath.toString());
 		Resource resource = null;
 		try {
-			resource = new UrlResource(filePath.toUri());
+			resource = uploadFileService.loadFile(filename);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-		}
-		if(!resource.exists() && !resource.isReadable()) {
-			filePath = Paths.get("src/main/resources/static/images").resolve("not-photo.png").toAbsolutePath();
-			try {
-				resource = new UrlResource(filePath.toUri());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
-			log.error("Error al cargar la imagen: " + filename);
 		}
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-	}
-
-	private void deletePreviousPhoto(Cliente cliente) {
-		String oldFilename = cliente.getPhoto();
-		if(oldFilename != null && oldFilename.length() > 0) {
-			Path oldFilePath = Paths.get("uploads").resolve(oldFilename).toAbsolutePath();
-			File oldPhotoFile = oldFilePath.toFile();
-			if(oldPhotoFile.exists() && oldPhotoFile.canRead()) oldPhotoFile.delete();
-		}
 	}
 }
