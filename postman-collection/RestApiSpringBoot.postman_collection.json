@@ -23,6 +23,24 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/clientes/regiones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/regiones",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"regiones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/uploads/img/90e18c50-33b2-4261-8fbb-942108b28b6c_profile.png",
 			"request": {
 				"method": "GET",

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecristobale.spring.boot.apirest.models.entity.Cliente;
+import com.ecristobale.spring.boot.apirest.models.entity.Region;
 import com.ecristobale.spring.boot.apirest.models.services.IClienteService;
 import com.ecristobale.spring.boot.apirest.models.services.IUploadFileService;
 
@@ -129,6 +130,7 @@ public class ClienteRestController {
 			clienteActual.setApellido(cliente.getApellido());
 			clienteActual.setEmail(cliente.getEmail());
 			clienteActual.setCreatedAt(cliente.getCreatedAt());
+			clienteActual.setRegion(cliente.getRegion());
 			
 			clienteUpdated = clienteService.save(clienteActual);
 		} catch(DataAccessException dae) {
@@ -196,5 +198,10 @@ public class ClienteRestController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+	}
+	
+	@GetMapping("clientes/regiones")
+	public List<Region> getRegionsList(){
+		return clienteService.findAllRegions();
 	}
 }

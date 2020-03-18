@@ -8,6 +8,7 @@ import { Cliente } from './cliente.js';
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Region } from './region';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class ClienteService {
 
   constructor(private http: HttpClient,
               private router: Router) { }
+
+  getRegiones(): Observable<Region[]> {
+    return this.http.get<Region[]>(this.urlEndPoint + '/regiones');
+  }
 
   getClientes(page: number): Observable<any> {
     /* CLIENTES converted as stream by using of

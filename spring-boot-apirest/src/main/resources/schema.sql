@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS regions;
+
+CREATE TABLE regions(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   name VARCHAR (250)
+);
+
 DROP TABLE IF EXISTS clientes;
 
 CREATE TABLE clientes(
@@ -6,5 +13,7 @@ CREATE TABLE clientes(
    apellido VARCHAR (250) NOT NULL,
    email VARCHAR (250) NOT NULL UNIQUE,
    created_at TIMESTAMP NOT NULL,
-   photo VARCHAR (250)
+   photo VARCHAR (250),
+   region_id BIGINT NOT NULL,
+   FOREIGN KEY (region_id) REFERENCES regions
 );
