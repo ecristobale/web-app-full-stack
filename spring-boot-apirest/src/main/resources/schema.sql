@@ -17,3 +17,27 @@ CREATE TABLE clientes(
    region_id BIGINT NOT NULL,
    FOREIGN KEY (region_id) REFERENCES regions
 );
+
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS usuarios_roles;
+
+CREATE TABLE roles(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   nombre VARCHAR (30) UNIQUE
+);
+
+CREATE TABLE usuarios(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   enabled BOOLEAN,
+   username VARCHAR (20) UNIQUE,
+   password VARCHAR (60)
+);
+
+CREATE TABLE usuarios_roles(
+   usuario_id BIGINT NOT NULL,
+   role_id BIGINT NOT NULL,
+   PRIMARY KEY (usuario_id, role_id),
+   FOREIGN KEY (role_id) REFERENCES roles,
+   FOREIGN KEY (usuario_id) REFERENCES usuarios
+);

@@ -94,3 +94,21 @@ VALUES
 ('Junior', 'Bann', 'jbassnngd3fg@gmail.com', '2020-01-30 23:52:12.646', 6),
 ('Junior', 'Bann', 'jbanaansfdg3sdf@gmail.com', '2020-01-30 23:52:12.646', 1),
 ('Junior', 'Bann', 'jbannaasdfgs3dfg@gmail.com', '2020-01-30 23:52:12.646', 2);
+
+INSERT INTO usuarios (username, password, enabled) 
+VALUES 
+('eduardo', '$2a$10$LhX3sOD9hJnO4HYwEdmKuOW3JYCh/CPFRYxW7R2whwetfIV/wZdqq', 1),
+('admin', '$2a$10$8CmHTgDYdCgFC6VHahNGgugnIOY/LiC37L1jaK2vmu4MJUPzDKTlS', 1);
+
+INSERT INTO roles (nombre) 
+VALUES 
+('ROLE_USER'),
+('ROLE_ADMIN');
+
+INSERT INTO usuarios_roles (usuario_id, role_id) 
+VALUES 
+(1, 1),
+(2, 1),
+(2, 2);
+
+-- SELECT * FROM usuarios u LEFT JOIN usuarios_roles ur ON u.id = ur.usuario_id LEFT JOIN roles r ON ur.role_id = r.id;  -- see users & roles
