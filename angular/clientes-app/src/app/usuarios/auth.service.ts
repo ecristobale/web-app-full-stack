@@ -7,8 +7,30 @@ import { Usuario } from './usuario';
   providedIn: 'root'
 })
 export class AuthService {
+  private _usuario: Usuario;
+  private _token: string;
 
   constructor(private http: HttpClient) { }
+
+  public get usuario(): Usuario {
+    if (this._usuario != null) {
+      return this._usuario;
+    } else if (this._usuario == null && sessionStorage.getItem('usuario') != null) {
+      this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
+      return this._usuario;
+    }
+    return new Usuario();
+  }
+
+  public get token(): string {
+    if (this._token != null) {
+      return this._token;
+    } else if (this._token == null && sessionStorage.getItem('token') != null) {
+      this._token = sessionStorage.getItem('token');
+      return this._token;
+    }
+    return null;
+  }
 
   login(usuario: Usuario): Observable<any> {
     const urlEndpoint = 'http://localhost:8081/oauth/token';
@@ -20,5 +42,25 @@ export class AuthService {
     params.set('username', usuario.username);
     params.set('password', usuario.password);
     return this.http.post<any>(urlEndpoint, params.toString(), {headers: httpHeaders});
+  }
+
+  saveUser(accessToken: string) {
+    let payload = this.obtainPayload(accessToken);
+    this._usuario = new Usuario();
+    this._usuario.username = payload.user_name;
+    this._usuario.roles = payload.authorities;
+    sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
+  }
+
+  saveAccessToken(accessToken: string) {
+    this._token = accessToken;
+    sessionStorage.setItem('token', accessToken);
+  }
+
+  obtainPayload(accessToken: string): any {
+    if (accessToken != null) {
+      JSON.parse(atob(accessToken.split('.')[1]));
+    }
+    return null;
   }
 }
