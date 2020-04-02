@@ -59,8 +59,24 @@ export class AuthService {
 
   obtainPayload(accessToken: string): any {
     if (accessToken != null) {
-      JSON.parse(atob(accessToken.split('.')[1]));
+      return JSON.parse(atob(accessToken.split('.')[1]));
     }
     return null;
+  }
+
+  isAuthenticated(): boolean {
+    let payload = this.obtainPayload(this.token);
+    if (payload != null && payload.user_name && payload.user_name.length > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  logout(): void {
+    this._token = null;
+    this._usuario = null;
+    //sessionStorage.clear(); removes everything
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('usuario');
   }
 }

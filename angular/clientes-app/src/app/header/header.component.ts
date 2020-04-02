@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../usuarios/auth.service';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +12,16 @@ export class HeaderComponent implements OnInit {
 
   title = 'Web App Angular & Spring';
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout(): void {
+    let username = this.authService.usuario.username;
+    this.authService.logout();
+    swal.fire('Logout', `${username} ha cerrado sesión con éxito`, 'success');
+    this.router.navigate(['/login']);
   }
 
 }

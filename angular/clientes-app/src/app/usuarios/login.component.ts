@@ -17,12 +17,16 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      swal.fire('Login', `You are signed in as: ${this.authService.usuario.username}`, 'info');
+      this.router.navigate(['/clientes']);
+    }
   }
 
   login(): void {
     console.log(this.usuario);
     if (this.usuario.username == null || this.usuario.password == null) {
-      swal.fire('Error login', 'Username o password vacíos', 'error');
+      swal.fire('Error login', 'Username and password cannot be empty', 'error');
       return;
     }
     this.authService.login(this.usuario).subscribe(response => {
@@ -33,6 +37,10 @@ export class LoginComponent implements OnInit {
       let usuario = this.authService.usuario;
       this.router.navigate(['/clientes']);
       swal.fire('Login', `Bienvenido ${usuario.username}`, 'success');
+    }, err => {
+      if (err.status == 400) {
+        swal.fire('Error login', 'Username or password invalid!', 'error');
+      }
     });
   }
 
