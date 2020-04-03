@@ -19,7 +19,7 @@
                   <li class="list-group-item">{{cliente.createdAt | date:"fullDate"}}</li>
                   <li class="list-group-item">{{cliente.region.name}}</li>
                 </ul>
-                <div class="input-group mb-3">
+                <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="input-group mb-3">
                   <div class="custom-file">
                     <input (change)="selectPhoto($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
                     <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
