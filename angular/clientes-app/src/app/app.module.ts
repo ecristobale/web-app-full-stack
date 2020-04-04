@@ -9,7 +9,7 @@ import { FormComponent } from './clientes/form.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import localeES from '@angular/common/locales/es';
@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DetalleComponent } from './clientes/detalle/detalle.component';
 import { LoginComponent } from './usuarios/login.component';
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 
 registerLocaleData(localeES, 'es');
 
@@ -42,7 +43,8 @@ registerLocaleData(localeES, 'es');
     MatDatepickerModule,
     MatMomentDateModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'}],
+  providers: [{provide: LOCALE_ID, useValue: 'es'}, 
+            { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
