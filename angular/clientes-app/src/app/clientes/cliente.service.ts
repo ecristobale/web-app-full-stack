@@ -37,7 +37,7 @@ export class ClienteService {
       this.router.navigate(['/login']);
       return true;
     } else if (e.status == 403) {
-      swal.fire('Access denied', `Your user (${this.authService.usuario.username}) is not allowed to access to that content.`, 'warning')
+      swal.fire('Access denied', `Your user (${this.authService.usuario.username}) is not allowed to access to that content.`, 'warning');
       this.router.navigate(['/clientes']);
       return true;
     }
