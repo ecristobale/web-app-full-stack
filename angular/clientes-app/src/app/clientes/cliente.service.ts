@@ -6,10 +6,8 @@ import { formatDate, DatePipe } from '@angular/common';
 import { CLIENTES } from './clientes.json';
 import { Cliente } from './cliente.js';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
-import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Region } from './region';
-import { AuthService } from '../usuarios/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,30 +16,10 @@ export class ClienteService {
   urlEndPoint = 'http://localhost:8081/api/clientes';
 
   constructor(private http: HttpClient,
-              private router: Router, private authService: AuthService) { }
-
-  private isNotAuthorized(e): boolean {
-    if (e.status == 401) {
-      if (this.authService.isAuthenticated()) {
-        this.authService.logout();
-      }
-      this.router.navigate(['/login']);
-      return true;
-    } else if (e.status == 403) {
-      swal.fire('Access denied', `Your user (${this.authService.usuario.username}) is not allowed to access to that content.`, 'warning');
-      this.router.navigate(['/clientes']);
-      return true;
-    }
-    return false;
-  }
+              private router: Router) { }
 
   getRegiones(): Observable<Region[]> {
-    return this.http.get<Region[]>(this.urlEndPoint + '/regiones').pipe(
-      catchError(e => {
-        this.isNotAuthorized(e);
-        return throwError(e);
-      })
-    );
+    return this.http.get<Region[]>(this.urlEndPoint + '/regiones');
   }
 
   getClientes(page: number): Observable<any> {
@@ -77,15 +55,12 @@ export class ClienteService {
     return this.http.post(this.urlEndPoint, cliente).pipe(
       map( (jsonResponse: any) => jsonResponse.cliente as Cliente),
       catchError(e => {
-        if (this.isNotAuthorized(e)) {
-          return throwError(e);
-        }
         if (e.status === 400) {
           return throwError(e);
         }
-
-        console.error(e.error.mensaje);
-        swal.fire(e.error.mensaje, e.error.error, 'error');
+        if (e.error.mensaje) {
+          console.error(e.error.mensaje);
+        }
         return throwError(e);
       })
     );
@@ -94,13 +69,10 @@ export class ClienteService {
   getCliente(id: number): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        if (this.isNotAuthorized(e)) {
-          return throwError(e);
+        if (e.status != 401 && e.error.mensaje) {
+          this.router.navigate(['./clientes']);
+          console.error(e.error.mensaje);
         }
-
-        this.router.navigate(['./clientes']);
-        console.error(e.error.mensaje);
-        swal.fire('Error al editar', e.error.mensaje, 'error');
         return throwError(e);
       })
     );
@@ -109,15 +81,12 @@ export class ClienteService {
   update(cliente: Cliente): Observable<any> {
     return this.http.put<any>(`${this.urlEndPoint}/${cliente.id}`, cliente).pipe(
       catchError(e => {
-        if (this.isNotAuthorized(e)) {
-          return throwError(e);
-        }
-
         if ( e.status === 400) {
           return throwError(e);
         }
-        console.error(e.error.mensaje);
-        swal.fire(e.error.mensaje, e.error.error, 'error');
+        if (e.error.mensaje) {
+          console.error(e.error.mensaje);
+        }
         return throwError(e);
       })
     );
@@ -126,12 +95,9 @@ export class ClienteService {
   delete(id: number): Observable<Cliente> {
     return this.http.delete<Cliente>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        if (this.isNotAuthorized(e)) {
-          return throwError(e);
+        if (e.error.mensaje) {
+          console.error(e.error.mensaje);
         }
-
-        console.error(e.error.mensaje);
-        swal.fire(e.error.mensaje, e.error.error, 'error');
         return throwError(e);
       })
     );
@@ -146,11 +112,6 @@ export class ClienteService {
       reportProgress: true
     });
 
-    return this.http.request(req).pipe(
-      catchError(e => {
-        this.isNotAuthorized(e);
-        return throwError(e);
-      })
-    );
+    return this.http.request(req);
   }
 }
