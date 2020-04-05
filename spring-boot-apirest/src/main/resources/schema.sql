@@ -18,6 +18,37 @@ CREATE TABLE clientes(
    FOREIGN KEY (region_id) REFERENCES regions
 );
 
+DROP TABLE IF EXISTS facturas;
+
+CREATE TABLE facturas(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   descripcion VARCHAR (250),
+   observacion VARCHAR (250),
+   created_at TIMESTAMP,
+   cliente_id BIGINT NOT NULL,
+   FOREIGN KEY (cliente_id) REFERENCES clientes
+);
+
+DROP TABLE IF EXISTS productos;
+
+CREATE TABLE productos(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   nombre VARCHAR (250),
+   precio DOUBLE,
+   created_at TIMESTAMP NOT NULL
+);
+
+DROP TABLE IF EXISTS facturas_items;
+
+CREATE TABLE facturas_items(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   cantidad BIGINT,
+   factura_id BIGINT NOT NULL,
+   producto_id BIGINT NOT NULL,
+   FOREIGN KEY (factura_id) REFERENCES facturas,
+   FOREIGN KEY (producto_id) REFERENCES productos
+);
+
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS usuarios_roles;
