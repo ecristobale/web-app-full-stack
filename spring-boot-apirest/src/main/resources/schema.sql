@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS facturas_items;
 CREATE TABLE facturas_items(
    id BIGINT AUTO_INCREMENT PRIMARY KEY,
    cantidad BIGINT,
-   factura_id BIGINT NOT NULL,
+   factura_id BIGINT,
    producto_id BIGINT NOT NULL,
    FOREIGN KEY (factura_id) REFERENCES facturas,
    FOREIGN KEY (producto_id) REFERENCES productos
