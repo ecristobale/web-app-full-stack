@@ -53,6 +53,7 @@
                     <th>descripción</th>
                     <th>fecha</th>
                     <th>total</th>
+                    <th>detalle</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -61,6 +62,10 @@
                     <td>{{factura.descripcion}}</td>
                     <td>{{factura.createdAt}}</td>
                     <td>{{factura.total}}</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" type="button" 
+                        [routerLink]="['/facturas', factura.id]">ver</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

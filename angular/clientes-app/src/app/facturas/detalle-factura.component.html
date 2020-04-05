@@ -1,0 +1,21 @@
+<div class="card bg-light" *ngIf="factura">
+    <div class="card-header">{{titulo}}: {{factura.descripcion}}</div>
+    <div class="card-body">
+        <h4 class="card-title">
+            <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; Go back</a>
+        </h4>
+
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary">Datos cliente</li>
+            <li class="list-group-item">{{factura.cliente.nombre}}</li>
+            <li class="list-group-item">{{factura.cliente.apellido}}</li>
+        </ul>
+        
+        <ul class="list-group my-2">
+            <li class="list-group-item list-group-item-primary">Datos de la factura</li>
+            <li class="list-group-item">Folio: {{factura.id}}</li>
+            <li class="list-group-item">Descripción: {{factura.descripcion}}</li>
+            <li class="list-group-item">Fecha: {{factura.createdAt}}</li>
+        </ul>
+    </div>
+</div>
