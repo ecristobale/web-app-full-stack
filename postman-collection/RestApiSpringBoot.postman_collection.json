@@ -259,6 +259,27 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/clientes/{id} WITHOUT AUTH",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/clientes/1",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
 			"request": {
 				"auth": {
@@ -772,49 +793,49 @@
 	],
 	"variable": [
 		{
-			"id": "69e67c53-041b-4675-994f-c308329e9ad0",
+			"id": "9a33274b-176c-4a0a-a08e-9ec5ef55d011",
 			"key": "restApiService",
 			"value": "/api",
 			"type": "string"
 		},
 		{
-			"id": "e760c1c5-6954-4eca-a97f-41c933f195a6",
+			"id": "dac054ea-3e34-4f11-bdb6-e5142fd5305c",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "ec879a5c-b173-4190-9a36-ffb54ad90826",
+			"id": "0426de32-a760-4022-9900-2c49a4795f17",
 			"key": "pwd",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "9c6dfc98-81c9-449c-88e1-1e9ac0609bc5",
+			"id": "ccfa1934-61fa-46e0-8dc4-4ae58b8df28c",
 			"key": "clienteApp",
 			"value": "angularapp",
 			"type": "string"
 		},
 		{
-			"id": "0b9e6571-20f1-45ee-9986-2a9087ad1668",
+			"id": "2ce89916-6917-412b-b15d-f7ff84753f82",
 			"key": "clienteAppSecret",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "b3e5911b-b729-4fb2-9191-9909c592f168",
+			"id": "582ea71b-972f-4095-ae4c-dbdfe7008396",
 			"key": "grantTypeLogin",
 			"value": "password",
 			"type": "string"
 		},
 		{
-			"id": "999ab629-da24-469b-be16-19bbb56ff7aa",
+			"id": "f2258f35-ca83-49d7-a7c9-1072197dd67f",
 			"key": "accessToken",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "9e83f67f-c9ff-4b21-8f56-99ecedab0c88",
+			"id": "435164da-3ebe-47cc-9138-951b4056ccb0",
 			"key": "photo",
 			"value": "",
 			"type": "string"
