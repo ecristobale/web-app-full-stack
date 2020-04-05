@@ -24,7 +24,7 @@ CREATE TABLE facturas(
    id BIGINT AUTO_INCREMENT PRIMARY KEY,
    descripcion VARCHAR (250),
    observacion VARCHAR (250),
-   created_at TIMESTAMP,
+   created_at DATE,
    cliente_id BIGINT NOT NULL,
    FOREIGN KEY (cliente_id) REFERENCES clientes
 );

@@ -37,7 +37,7 @@ public class Factura implements Serializable{
 	private String observacion;
 	
 	@Column(name="created_at")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
 	@PrePersist
