@@ -10,7 +10,10 @@ import { PaginatorComponent } from './paginator/paginator.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import localeES from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
@@ -46,7 +49,8 @@ registerLocaleData(localeES, 'es');
     FormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es'},
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
