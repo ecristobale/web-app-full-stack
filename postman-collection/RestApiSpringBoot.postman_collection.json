@@ -301,6 +301,28 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/facturas/product-filter/{term} WITHOUT AUTH",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/facturas/product-filter/son",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"facturas",
+						"product-filter",
+						"son"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
 			"request": {
 				"auth": {
@@ -814,49 +836,49 @@
 	],
 	"variable": [
 		{
-			"id": "1c63fed4-cc10-4d83-ae38-d45167fff685",
+			"id": "7e331e4f-425c-45d1-80c0-c84d29d8e761",
 			"key": "restApiService",
 			"value": "/api",
 			"type": "string"
 		},
 		{
-			"id": "14b1072d-d150-42b1-ae39-a7bef828a61e",
+			"id": "6a529cca-5aa6-417b-ac75-5bd2cce3f263",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "3a3cf624-2418-4d81-b0ad-19b79ffcc8a6",
+			"id": "000e5e43-be48-4c09-88fc-5f14fa22f6c9",
 			"key": "pwd",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "cbee2300-603f-48c8-a46a-3fd7293b24cc",
+			"id": "8beb9e49-a594-4ec6-aa8f-58738c699ac0",
 			"key": "clienteApp",
 			"value": "angularapp",
 			"type": "string"
 		},
 		{
-			"id": "06d47531-c9c3-4fa4-ae66-4bd965fa92f4",
+			"id": "a830c9cd-e95e-4fe9-8d9f-80e41d8f6df0",
 			"key": "clienteAppSecret",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "e2936b3d-2355-44da-b79f-4e66e705f9f9",
+			"id": "55f5b95a-6af8-4f10-a5c0-c3e5b55017f2",
 			"key": "grantTypeLogin",
 			"value": "password",
 			"type": "string"
 		},
 		{
-			"id": "76d89b72-9435-4985-8465-b771d44dc35e",
+			"id": "bd4df74f-e34c-4b07-85af-87aa6f88b004",
 			"key": "accessToken",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c56e1b82-905d-4866-b28a-48656f19a7cd",
+			"id": "49ec63f9-8ae7-4246-a722-11d18ef118d9",
 			"key": "photo",
 			"value": "",
 			"type": "string"
