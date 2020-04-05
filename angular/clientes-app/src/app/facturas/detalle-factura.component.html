@@ -2,7 +2,7 @@
     <div class="card-header">{{titulo}}: {{factura.descripcion}}</div>
     <div class="card-body">
         <h4 class="card-title">
-            <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; Go back</a>
+            <a [routerLink]="['/clientes']" class="btn btn-light btn-xs">&laquo; volver</a>
         </h4>
 
         <ul class="list-group my-2">
@@ -17,5 +17,37 @@
             <li class="list-group-item">Descripción: {{factura.descripcion}}</li>
             <li class="list-group-item">Fecha: {{factura.createdAt}}</li>
         </ul>
+
+        <table class="table table-striped table-hover table-bordered my-3">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of factura.itemsFactura">
+                    <td>{{item.producto.nombre}}</td>
+                    <td>{{item.producto.precio}}</td>
+                    <td>{{item.cantidad}}</td>
+                    <td>{{item.calcularImporte}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 class="float-right">
+            <span>Total: </span><span class="badge badge-secondary">{{factura.total}}</span>
+        </h5>
+
+        <div class="card border-info mb-4" style="max-width: 350px;">
+            <div class="card card-header">
+                Observaciones
+            </div>
+            <div class="card card-body">
+                <p *ngIf="factura.observacion">{{factura.observacion}}</p>
+                <p *ngIf="!factura.observacion">No tiene observación</p>
+            </div>
+        </div>
     </div>
 </div>

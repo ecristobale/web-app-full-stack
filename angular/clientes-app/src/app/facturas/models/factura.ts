@@ -6,7 +6,7 @@ export class Factura {
     id: number;
     descripcion: string;
     observacion: string;
-    items: Array<ItemFactura> = [];
+    itemsFactura: Array<ItemFactura> = [];
     cliente: Cliente;
     total: number;
     createdAt: string;
