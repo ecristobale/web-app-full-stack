@@ -280,6 +280,27 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8081/api/facturas/{id} WITHOUT AUTH Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlHost}}{{restApiService}}/facturas/1",
+					"host": [
+						"{{urlHost}}{{restApiService}}"
+					],
+					"path": [
+						"facturas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/api/clientes/{id} NOT FOUND",
 			"request": {
 				"auth": {
@@ -793,49 +814,49 @@
 	],
 	"variable": [
 		{
-			"id": "9a33274b-176c-4a0a-a08e-9ec5ef55d011",
+			"id": "1c63fed4-cc10-4d83-ae38-d45167fff685",
 			"key": "restApiService",
 			"value": "/api",
 			"type": "string"
 		},
 		{
-			"id": "dac054ea-3e34-4f11-bdb6-e5142fd5305c",
+			"id": "14b1072d-d150-42b1-ae39-a7bef828a61e",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "0426de32-a760-4022-9900-2c49a4795f17",
+			"id": "3a3cf624-2418-4d81-b0ad-19b79ffcc8a6",
 			"key": "pwd",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "ccfa1934-61fa-46e0-8dc4-4ae58b8df28c",
+			"id": "cbee2300-603f-48c8-a46a-3fd7293b24cc",
 			"key": "clienteApp",
 			"value": "angularapp",
 			"type": "string"
 		},
 		{
-			"id": "2ce89916-6917-412b-b15d-f7ff84753f82",
+			"id": "06d47531-c9c3-4fa4-ae66-4bd965fa92f4",
 			"key": "clienteAppSecret",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "582ea71b-972f-4095-ae4c-dbdfe7008396",
+			"id": "e2936b3d-2355-44da-b79f-4e66e705f9f9",
 			"key": "grantTypeLogin",
 			"value": "password",
 			"type": "string"
 		},
 		{
-			"id": "f2258f35-ca83-49d7-a7c9-1072197dd67f",
+			"id": "76d89b72-9435-4985-8465-b771d44dc35e",
 			"key": "accessToken",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "435164da-3ebe-47cc-9138-951b4056ccb0",
+			"id": "c56e1b82-905d-4866-b28a-48656f19a7cd",
 			"key": "photo",
 			"value": "",
 			"type": "string"
