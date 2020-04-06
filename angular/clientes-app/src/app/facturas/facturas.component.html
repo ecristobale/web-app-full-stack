@@ -45,7 +45,11 @@
                 </div>
             </div>
 
-            <table class="table table-striped table-hover table-sm">
+            <div class="alert alert-info my-4" *ngIf="factura.itemsFactura.length==0">
+                There is no lines asigned to invoice. You should add at least one.
+            </div>
+
+            <table class="table table-striped table-hover table-sm" *ngIf="factura.itemsFactura.length>0">
                 <thead>
                     <tr>
                         <th>Producto</th>
@@ -66,6 +70,10 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h5 class="float-right" *ngIf="factura.itemsFactura.length!>0">
+                Total <span class="badge badge-secondary">{{factura.calculateTotal()}}</span>
+            </h5>
 
             <div class="form-group row">
                 <div class="col-sm-6">
