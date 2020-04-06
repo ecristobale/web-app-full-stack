@@ -9,7 +9,7 @@ VALUES
 
 INSERT INTO clientes (nombre, apellido, email, created_at, region_id) 
 VALUES 
-('Eduardo', 'Cristóbal', 'edu_ce_1988@hotmail.com', '2019-12-16 16:50:12.646', 3),
+('Eduardo', 'CristÃ³bal', 'edu_ce_1988@hotmail.com', '2019-12-16 16:50:12.646', 3),
 ('Jonh', 'Doe', 'johndoe@gmail.com', '2019-12-16 16:51:12.646', 5),
 ('Cris', 'Doe', 'crisdoe@gmail.com', '2019-12-16 16:52:12.646', 5),
 ('Alex', 'Harrys', 'aharrys@gmail.com', '2020-01-30 23:52:12.646', 3),
