@@ -10,7 +10,7 @@ import { Region } from './region';
   templateUrl: './form.component.html'
 })
 export class FormComponent implements OnInit {
-  private cliente: Cliente = new Cliente();
+  public cliente: Cliente = new Cliente();
   private titulo = 'Crear cliente';
   regiones: Region[];
 

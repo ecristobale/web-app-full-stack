@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   title = 'Web App Angular & Spring';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }

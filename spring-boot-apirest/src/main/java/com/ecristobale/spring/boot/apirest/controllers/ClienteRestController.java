@@ -36,7 +36,7 @@ import com.ecristobale.spring.boot.apirest.models.entity.Region;
 import com.ecristobale.spring.boot.apirest.models.services.IClienteService;
 import com.ecristobale.spring.boot.apirest.models.services.IUploadFileService;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api")
 public class ClienteRestController {

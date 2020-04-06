@@ -9,7 +9,7 @@ VALUES
 
 INSERT INTO clientes (nombre, apellido, email, created_at, region_id) 
 VALUES 
-('Eduardo', 'Cristóbal', 'edu_ce_1988@hotmail.com', '2019-12-16 16:50:12.646', 3),
+('Eduardo', 'Crist�bal', 'edu_ce_1988@hotmail.com', '2019-12-16 16:50:12.646', 3),
 ('Jonh', 'Doe', 'johndoe@gmail.com', '2019-12-16 16:51:12.646', 5),
 ('Cris', 'Doe', 'crisdoe@gmail.com', '2019-12-16 16:52:12.646', 5),
 ('Alex', 'Harrys', 'aharrys@gmail.com', '2020-01-30 23:52:12.646', 3),
@@ -48,7 +48,7 @@ VALUES
 ('Rivaul', 'Vohn', 'jba87nnj@gmail.com', '2020-01-30 23:52:12.646', 2),
 ('David', 'Mc Nult', 'jba98nnk@gmail.com', '2020-01-30 23:52:12.646', 3),
 ('Ignacio', 'Rememb', 'jban90nl@gmail.com', '2020-01-30 23:52:12.646', 4),
-('Joan', 'Terret', 'jba09nnñ@gmail.com', '2020-01-30 23:52:12.646', 5),
+('Joan', 'Terret', 'jba09nndddd@gmail.com', '2020-01-30 23:52:12.646', 5),
 ('David', 'Flanagan', 'jba987nnz@gmail.com', '2020-01-30 23:52:12.646', 6),
 ('Fer', 'Growth', 'jba87nnx@gmail.com', '2020-01-30 23:52:12.646', 1),
 ('Laura', 'Kind', 'jba76nnc@gmail.com', '2020-01-30 23:52:12.646', 2),
@@ -63,7 +63,7 @@ VALUES
 ('Jony', 'Marak', 'jbasnnhj@gmail.com', '2020-01-30 23:52:12.646', 5),
 ('Omar', 'Danc', 'jbacnnkj@gmail.com', '2020-01-30 23:52:12.646', 6),
 ('Oli', 'Champ', 'jbagnn6lk@gmail.com', '2020-01-30 23:52:12.646', 1),
-('Mark', 'Streng', 'jbafnnñl@gmail.com', '2020-01-30 23:52:12.646', 2),
+('Mark', 'Streng', 'jbafnnasdfasdf@gmail.com', '2020-01-30 23:52:12.646', 2),
 ('Sivir', 'Lear', 'jbangnvo@gmail.com', '2020-01-30 23:52:12.646', 3),
 ('Ashe', 'Bann', 'jbahnnyx@gmail.com', '2020-01-30 23:52:12.646', 4),
 ('Ander', 'Ground', 'jbasdnn6mq@gmail.com', '2020-01-30 23:52:12.646', 5),
