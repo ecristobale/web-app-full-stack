@@ -11,19 +11,19 @@
         <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
             <thead>
                 <tr>
-                    <th>#</th><!--<th *ngIf="authService.hasRole('ROLE_USER')">#</th>-->
+                    <th *ngIf="authService.hasRole('ROLE_USER')">#</th>
                     <th>nombre</th>
                     <th>apellido</th>
                     <th>email</th>
                     <th>fecha</th>
-                    <th>crear factura</th>
+                    <th *ngIf="authService.hasRole('ROLE_ADMIN')">crear factura</th>
                     <th *ngIf="authService.hasRole('ROLE_ADMIN')">editar</th>
                     <th *ngIf="authService.hasRole('ROLE_ADMIN')">eliminar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let cliente of clientes">
-                    <td><!--<td *ngIf="authService.hasRole('ROLE_USER')">--><img *ngIf="cliente?.photo" (click)="openModal(cliente)" style="width: 64px; cursor: pointer;"
+                    <td *ngIf="authService.hasRole('ROLE_USER')"><img *ngIf="cliente?.photo" (click)="openModal(cliente)" style="width: 64px; cursor: pointer;"
                         src="http://localhost:8081/api/uploads/img/{{cliente.photo}}" alt="{{cliente.photo}}" class="img-thumbnail rounded">
                         <img *ngIf="!cliente?.photo" (click)="openModal(cliente)" style="width: 64px; cursor: pointer;"
                         src="http://localhost:8081/images/not-photo.png" alt="No photo" class="img-thumbnail rounded">
@@ -32,7 +32,7 @@
                     <td>{{ cliente.apellido | uppercase }}</td>
                     <td>{{ cliente.email }}</td>
                     <td>{{ cliente.createdAt | date:"EEEE dd, MMMM yyyy" }}</td>
-                    <td><button type="button" [routerLink]="['/facturas/form', cliente.id]" class="btn btn-success btn-sm">crear factura</button></td>
+                    <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button type="button" [routerLink]="['/facturas/form', cliente.id]" class="btn btn-success btn-sm">crear factura</button></td>
                     <td *ngIf="authService.hasRole('ROLE_ADMIN')">
                         <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-primary btn-sm">editar</button>
                     </td>
