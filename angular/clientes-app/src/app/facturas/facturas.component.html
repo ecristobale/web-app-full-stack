@@ -61,7 +61,8 @@
                         <td>{{item.producto.precio}}</td>
                         <td><input type="number" value="{{item.cantidad}}" class="form-control col-sm-4" (change)="updateQuantity(item.producto.id, $event)"></td>
                         <td>{{item.importCalculation()}}</td>
-                        <td></td>
+                        <td><button class="btn btn-danger btn-sm" type="button" 
+                            (click)="deleteItem(item.producto.id)">x</button></td>
                     </tr>
                 </tbody>
             </table>
