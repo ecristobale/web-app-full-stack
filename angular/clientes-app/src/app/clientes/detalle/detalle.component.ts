@@ -16,7 +16,7 @@ import { Factura } from 'src/app/facturas/models/factura';
 export class DetalleComponent implements OnInit {
   @Input() cliente: Cliente;
   titulo = 'Detalle del cliente';
-  private selectedPhoto: File;
+  public selectedPhoto: File;
   progress = 0;
 
   constructor(private clienteService: ClienteService,

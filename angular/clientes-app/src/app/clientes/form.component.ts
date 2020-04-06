@@ -11,10 +11,10 @@ import { Region } from './region';
 })
 export class FormComponent implements OnInit {
   public cliente: Cliente = new Cliente();
-  private titulo = 'Crear cliente';
+  public titulo = 'Crear cliente';
   regiones: Region[];
 
-  private errores: string[];
+  public errores: string[];
 
   constructor(private clienteService: ClienteService,
               private router: Router,
