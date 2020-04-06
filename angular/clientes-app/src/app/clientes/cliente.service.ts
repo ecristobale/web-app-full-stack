@@ -9,11 +9,13 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Region } from './region';
 
+import { URL_BACKEND } from 'src/app/config/config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  urlEndPoint = 'http://localhost:8081/api/clientes';
+  urlEndPoint = URL_BACKEND + '/api/clientes';
 
   constructor(private http: HttpClient,
               private router: Router) { }
