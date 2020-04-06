@@ -6,6 +6,26 @@
 	},
 	"item": [
 		{
+			"name": "HEROKU_HOST/api/clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://spring-boot-2clientes-app.herokuapp.com{{restApiService}}/clientes",
+					"protocol": "https",
+					"host": [
+						"spring-boot-2clientes-app",
+						"herokuapp",
+						"com{{restApiService}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8081/oauth/token",
 			"event": [
 				{
@@ -836,49 +856,49 @@
 	],
 	"variable": [
 		{
-			"id": "7e331e4f-425c-45d1-80c0-c84d29d8e761",
+			"id": "998454b9-4853-44ce-b7bc-7f71fc43be33",
 			"key": "restApiService",
 			"value": "/api",
 			"type": "string"
 		},
 		{
-			"id": "6a529cca-5aa6-417b-ac75-5bd2cce3f263",
+			"id": "96ff43d1-0283-4ea7-bf68-410270162c5f",
 			"key": "username",
 			"value": "admin",
 			"type": "string"
 		},
 		{
-			"id": "000e5e43-be48-4c09-88fc-5f14fa22f6c9",
+			"id": "dedaa1bd-72d1-40e9-8bfe-f02f6f09c0b4",
 			"key": "pwd",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "8beb9e49-a594-4ec6-aa8f-58738c699ac0",
+			"id": "a5ced7c8-e6b4-4edf-bd9a-a935af35b0b0",
 			"key": "clienteApp",
 			"value": "angularapp",
 			"type": "string"
 		},
 		{
-			"id": "a830c9cd-e95e-4fe9-8d9f-80e41d8f6df0",
+			"id": "251fd2d9-e874-4d68-ba47-cae939659fd2",
 			"key": "clienteAppSecret",
 			"value": "12345",
 			"type": "string"
 		},
 		{
-			"id": "55f5b95a-6af8-4f10-a5c0-c3e5b55017f2",
+			"id": "686c76c5-19fe-4516-a323-ccea57a83388",
 			"key": "grantTypeLogin",
 			"value": "password",
 			"type": "string"
 		},
 		{
-			"id": "bd4df74f-e34c-4b07-85af-87aa6f88b004",
+			"id": "c14f4731-f57a-4582-b874-1ad8c55ded7d",
 			"key": "accessToken",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "49ec63f9-8ae7-4246-a722-11d18ef118d9",
+			"id": "7c0549be-0ac4-4617-b05a-bb5109e3c918",
 			"key": "photo",
 			"value": "",
 			"type": "string"
