@@ -10,12 +10,14 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecristobale.spring.boot.apirest.models.entity.Cliente;
+import com.ecristobale.spring.boot.apirest.models.entity.ImgPerfil;
 import com.ecristobale.spring.boot.apirest.models.entity.Region;
 import com.ecristobale.spring.boot.apirest.models.services.IClienteService;
 import com.ecristobale.spring.boot.apirest.models.services.IUploadFileService;
@@ -193,17 +196,44 @@ public class ClienteRestController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 	
+//	Used when the images are retrieved from folder location
+//	@GetMapping("/uploads/img/{filename:.+}")
+//	public ResponseEntity<Resource> showPhoto(@PathVariable String filename) {
+//		Resource resource = null;
+//		try {
+//			resource = uploadFileService.loadFile(filename);
+//		} catch (MalformedURLException e) {
+//			e.printStackTrace();
+//		}
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
+//		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+//	}
+	
 	@GetMapping("/uploads/img/{filename:.+}")
 	public ResponseEntity<Resource> showPhoto(@PathVariable String filename) {
-		Resource resource = null;
+		ImgPerfil imgPerfil = null;
 		try {
-			resource = uploadFileService.loadFile(filename);
+			imgPerfil = uploadFileService.loadFile(filename);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
-		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+		if( imgPerfil != null ) {
+			return ResponseEntity.ok()
+	                .contentType(MediaType.parseMediaType(imgPerfil.getFileType()))
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + imgPerfil.getFilename() + "\"")
+	                .body(new ByteArrayResource(imgPerfil.getImg()));
+		} else {
+			Resource resource = null;
+			try {
+				resource = uploadFileService.loadFileDefaultImage(filename);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			HttpHeaders headers = new HttpHeaders();
+			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"");
+			return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+		}
 	}
 	
 	@Secured("ROLE_ADMIN")
