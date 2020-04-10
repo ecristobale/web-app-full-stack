@@ -81,4 +81,8 @@ export class ClientesComponent implements OnInit {
     this.modalService.openModal();
   }
 
+  signInMessage() {
+    swal.fire('Área restringida', 'Por favor, inicia sesión para ver los detalles', 'warning');
+  }
+
 }
