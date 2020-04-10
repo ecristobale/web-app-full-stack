@@ -49,6 +49,15 @@ CREATE TABLE facturas_items(
    FOREIGN KEY (producto_id) REFERENCES productos
 );
 
+DROP TABLE IF EXISTS img_perfiles;
+
+CREATE TABLE img_perfiles(
+   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+   filename VARCHAR (250) NOT NULL UNIQUE,
+   file_type VARCHAR (250) NOT NULL,
+   img BLOB NOT NULL
+);
+
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS usuarios_roles;
