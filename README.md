@@ -18,6 +18,9 @@ Main page with user role:
 Create new client with admin role (with form validation):
 ![Alt text](web-app-screenshots/create_new_user_form_validation.PNG?raw=true "New Client Page - Admin")
 
+Update client with admin role (with form validation):
+![Alt text](web-app-screenshots/update_user_form.PNG?raw=true "Update Client Page - Admin")
+
 Create new invoice with admin role (with form validation and autocomplete in product name):
 ![Alt text](web-app-screenshots/admin_form_new_invoice_validating_fields_autocomplete_product.PNG?raw=true "New Invoice Page - Admin")
 
