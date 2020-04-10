@@ -4,7 +4,8 @@
     </li>
 </ul>
 <div class="card bg-dark text-white">
-    <div class="card-header">{{ titulo }}</div>
+    <div class="card-header" *ngIf="!cliente.id">{{ titulo }}</div>
+    <div class="card-header" *ngIf="cliente.id">{{ tituloEditar }}</div>
     <div class="card-body">
 
         <form #clienteForm = "ngForm">
