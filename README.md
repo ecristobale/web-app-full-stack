@@ -6,7 +6,10 @@
 Main page without login:
 ![Alt text](web-app-screenshots/main_page.PNG?raw=true "Main Page")
 
-Login screen (ask me if you want to share with you any user):
+Some warnings indicating that the requested pages are in a restricted area:
+![Alt text](web-app-screenshots/area_restrictions_based_on_roles.PNG?raw=true "Main Page")
+
+Login screen (ask me if you want me to share with you any user to see the whole application):
 ![Alt text](web-app-screenshots/login_page.PNG?raw=true "Login Page")
 
 Main page with admin role:
@@ -26,6 +29,9 @@ Create new invoice with admin role (with form validation and autocomplete in pro
 
 Client details with admin role:
 ![Alt text](web-app-screenshots/admin_client_details.PNG?raw=true "Client Details Page - Admin")
+
+Client details upload an image (with progress bar animation) with admin role:
+![Alt text](web-app-screenshots/admin_client_photo_uploaded_with_progress_bar.PNG?raw=true "Client Details Upload An Image Page - Admin")
 
 Client details with user role:
 ![Alt text](web-app-screenshots/user_client_details.PNG?raw=true "Client Details Page - User")
