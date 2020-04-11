@@ -1,7 +1,7 @@
 # web-app-full-stack: Spring Boot 2 & Angular 8
 ## Links for visiting webapp:
 - Google Firebase: https://clientes-app-ecristobale.web.app/clientes
-- Heroku: https://spring-boot-2clientes-app.herokuapp.com/
+- Heroku (backend only): https://spring-boot-2clientes-app.herokuapp.com/
 
 Main page without login:
 ![Alt text](web-app-screenshots/main_page.PNG?raw=true "Main Page")
